@@ -43,7 +43,7 @@ export default function Header({ toggleSidebar }: HeaderProps) {
           </div>
           <input 
             type="text" 
-            className="block w-full pl-10 pr-3 py-1.5 border border-[#E3E8EE] bg-[#F9FBFC] rounded-lg text-sm placeholder-[#949AAB] focus:outline-none focus:ring-2 focus:ring-[#509EE3] focus:border-transparent" 
+            className="block w-full pl-10 pr-3 py-1.5 border border-[#E3E8EE] bg-[#F9FBFC] rounded-lg text-sm placeholder-[#949AAB] focus:outline-none focus:ring-1 focus:ring-[#509EE3] focus:border-transparent transition-colors" 
             placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -52,24 +52,24 @@ export default function Header({ toggleSidebar }: HeaderProps) {
       </div>
       
       <div className="flex items-center space-x-4">
-        <Button variant="ghost" size="icon" className="p-1.5 rounded-full text-[#606984] hover:bg-gray-100">
+        <Button variant="ghost" size="icon" className="p-1.5 rounded-full text-[#606984] hover:bg-[#F9FBFC] transition-colors">
           <Bell className="h-5 w-5" />
         </Button>
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center space-x-1 p-0">
-              <div className="w-8 h-8 rounded-full bg-[#509EE3] flex items-center justify-center text-white text-sm font-medium">
+            <Button variant="ghost" className="flex items-center space-x-1 p-1 hover:bg-[#F9FBFC] rounded-md transition-colors">
+              <div className="w-7 h-7 rounded-full bg-[#509EE3] flex items-center justify-center text-white text-xs font-medium">
                 JD
               </div>
-              <ChevronDown className="h-4 w-4 text-[#606984]" />
+              <ChevronDown className="h-3.5 w-3.5 text-[#949AAB]" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">Profile</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Sign out</DropdownMenuItem>
+            <DropdownMenuItem className="text-sm">Sign out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

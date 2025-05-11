@@ -35,13 +35,13 @@ export default function Sidebar() {
               fill="white" 
             />
           </svg>
-          <span className="ml-2 font-semibold text-lg text-[#2E3B52]">Metabase</span>
+          <span className="ml-2 font-semibold text-lg text-[#2E3B52] tracking-tight">Metabase</span>
         </div>
       </div>
       
       <div className="flex-1 overflow-y-auto py-4">
         <div className="px-3 mb-6">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Home</div>
+          <div className="text-[10px] font-bold text-[#949AAB] uppercase tracking-wider mb-3 px-3">Home</div>
           <Link href="/">
             <div className={`nav-item ${location === "/" ? "active" : "text-[#606984]"}`}>
               <Home className="h-4 w-4 mr-3" />
@@ -57,7 +57,7 @@ export default function Sidebar() {
         </div>
         
         <div className="px-3 mb-6">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Data</div>
+          <div className="text-[10px] font-bold text-[#949AAB] uppercase tracking-wider mb-3 px-3">Data</div>
           <Link href="/charts">
             <div className={`nav-item ${location === "/charts" ? "active" : "text-[#606984]"}`}>
               <BarChart3 className="h-4 w-4 mr-3" />
@@ -79,7 +79,7 @@ export default function Sidebar() {
         </div>
         
         <div className="px-3">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Settings</div>
+          <div className="text-[10px] font-bold text-[#949AAB] uppercase tracking-wider mb-3 px-3">Settings</div>
           <Link href="/settings">
             <div className={`nav-item ${location === "/settings" ? "active" : "text-[#606984]"}`}>
               <Settings className="h-4 w-4 mr-3" />
