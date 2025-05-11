@@ -14,21 +14,29 @@ export default function Sidebar() {
   return (
     <div className="metabase-sidebar">
       <div className="flex items-center px-4 h-14 border-b border-[#E3E8EE]">
-        <svg
-          width="32"
-          height="32"
-          viewBox="0 0 32 32"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
-        >
-          <rect width="32" height="32" rx="4" fill="#509EE3" />
-          <path
-            d="M16 6C10.477 6 6 10.477 6 16C6 21.523 10.477 26 16 26C21.523 26 26 21.523 26 16C26 10.477 21.523 6 16 6ZM16 11C18.761 11 21 13.239 21 16C21 18.761 18.761 21 16 21C13.239 21 11 18.761 11 16C11 13.239 13.239 11 16 11Z"
-            fill="white"
-          />
-        </svg>
-        <span className="ml-2 font-semibold text-lg text-[#2E3B52]">Superset</span>
+        <div className="flex items-center">
+          {/* Metabase-style logo */}
+          <svg 
+            width="32" 
+            height="32" 
+            viewBox="0 0 32 32" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-8 w-8"
+          >
+            <rect width="32" height="32" rx="8" fill="#509EE3" />
+            <path 
+              d="M24 16C24 20.4183 20.4183 24 16 24C11.5817 24 8 20.4183 8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16Z" 
+              stroke="white" 
+              strokeWidth="3"
+            />
+            <path 
+              d="M19 16C19 17.6569 17.6569 19 16 19C14.3431 19 13 17.6569 13 16C13 14.3431 14.3431 13 16 13C17.6569 13 19 14.3431 19 16Z" 
+              fill="white" 
+            />
+          </svg>
+          <span className="ml-2 font-semibold text-lg text-[#2E3B52]">Metabase</span>
+        </div>
       </div>
       
       <div className="flex-1 overflow-y-auto py-4">

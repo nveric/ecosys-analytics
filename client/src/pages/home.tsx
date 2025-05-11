@@ -9,7 +9,7 @@ export default function Home() {
     <div className="metabase-content">
       <div className="metabase-dashboard-header">
         <div>
-          <h1 className="text-2xl font-semibold text-[#2E3B52]">Welcome to Superset</h1>
+          <h1 className="text-2xl font-semibold text-[#2E3B52]">Welcome to Metabase</h1>
           <p className="text-sm text-[#606984] mt-1">Your data visualization platform</p>
         </div>
         
@@ -97,19 +97,19 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <a href="https://superset.apache.org/docs/intro" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+              <a href="https://www.metabase.com/docs/latest/" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                 <div className="font-medium text-[#2E3B52]">Documentation</div>
-                <div className="text-sm text-[#606984] mt-1">Learn how to use Superset</div>
+                <div className="text-sm text-[#606984] mt-1">Learn how to use Metabase</div>
               </a>
               
-              <a href="https://superset.apache.org/docs/installation/installing-superset-using-docker-compose" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+              <a href="https://www.metabase.com/docs/latest/installation-and-operation/installing-metabase" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                 <div className="font-medium text-[#2E3B52]">Installation Guide</div>
-                <div className="text-sm text-[#606984] mt-1">Setup Superset locally</div>
+                <div className="text-sm text-[#606984] mt-1">Setup Metabase locally</div>
               </a>
               
-              <a href="https://github.com/apache/superset" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+              <a href="https://github.com/metabase/metabase" target="_blank" rel="noopener noreferrer" className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                 <div className="font-medium text-[#2E3B52]">GitHub Repository</div>
-                <div className="text-sm text-[#606984] mt-1">Contribute to Superset</div>
+                <div className="text-sm text-[#606984] mt-1">Contribute to Metabase</div>
               </a>
             </div>
           </CardContent>

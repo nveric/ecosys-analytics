@@ -9,6 +9,7 @@ import DashboardPage from "@/pages/dashboard";
 import DatasetsPage from "@/pages/datasets";
 import ChartsPage from "@/pages/charts";
 import SQLLabPage from "@/pages/sql-lab";
+import Settings from "@/pages/settings";
 import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import { useState } from "react";
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/datasets" component={DatasetsPage} />
       <Route path="/charts" component={ChartsPage} />
       <Route path="/sql-lab" component={SQLLabPage} />
+      <Route path="/settings" component={Settings} />
       <Route component={NotFound} />
     </Switch>
   );
