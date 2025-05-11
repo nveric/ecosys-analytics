@@ -6,6 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import DashboardPage from "@/pages/dashboard";
+import DatasetsPage from "@/pages/datasets";
+import ChartsPage from "@/pages/charts";
+import SQLLabPage from "@/pages/sql-lab";
 import Sidebar from "@/components/ui/sidebar";
 import Header from "@/components/ui/header";
 import { useState } from "react";
@@ -15,7 +18,12 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/dashboards/sales" component={DashboardPage} />
+      <Route path="/dashboards/marketing" component={DashboardPage} />
+      <Route path="/dashboards/performance" component={DashboardPage} />
       <Route path="/dashboards" component={DashboardPage} />
+      <Route path="/datasets" component={DatasetsPage} />
+      <Route path="/charts" component={ChartsPage} />
+      <Route path="/sql-lab" component={SQLLabPage} />
       <Route component={NotFound} />
     </Switch>
   );
