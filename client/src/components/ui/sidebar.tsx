@@ -40,8 +40,8 @@ export default function Sidebar() {
       </div>
       
       <div className="flex-1 overflow-y-auto py-4">
-        <div className="px-3 mb-4">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Home</div>
+        <div className="px-3 mb-6">
+          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Home</div>
           <Link href="/">
             <div className={`nav-item ${location === "/" ? "active" : "text-[#606984]"}`}>
               <Home className="h-4 w-4 mr-3" />
@@ -49,15 +49,15 @@ export default function Sidebar() {
             </div>
           </Link>
           <Link href="/dashboards">
-            <div className={`nav-item ${location === "/dashboards" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location.includes("/dashboards") ? "active" : "text-[#606984]"}`}>
               <BarChart3 className="h-4 w-4 mr-3" />
               <span>Dashboards</span>
             </div>
           </Link>
         </div>
         
-        <div className="px-3 mb-4">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Data</div>
+        <div className="px-3 mb-6">
+          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Data</div>
           <Link href="/charts">
             <div className={`nav-item ${location === "/charts" ? "active" : "text-[#606984]"}`}>
               <BarChart3 className="h-4 w-4 mr-3" />
@@ -78,8 +78,8 @@ export default function Sidebar() {
           </Link>
         </div>
         
-        <div className="px-3 mb-4">
-          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Settings</div>
+        <div className="px-3">
+          <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-3 px-3">Settings</div>
           <Link href="/settings">
             <div className={`nav-item ${location === "/settings" ? "active" : "text-[#606984]"}`}>
               <Settings className="h-4 w-4 mr-3" />

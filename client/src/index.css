@@ -84,16 +84,15 @@
 @layer components {
   /* Navigation styling */
   .nav-item {
-    @apply flex items-center px-3 py-2 text-sm rounded-lg cursor-pointer;
+    @apply flex items-center px-3 py-2 text-sm rounded-lg cursor-pointer transition-colors;
   }
   
   .nav-item:hover {
-    @apply bg-gray-50;
+    @apply bg-[#F9FBFC];
   }
   
   .nav-item.active {
     @apply bg-blue-50 text-[#509EE3] font-medium;
-  }
   
   /* Card and container styling */
   .chart-container {

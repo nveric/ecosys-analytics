@@ -45,7 +45,9 @@ function App() {
         <div className="flex h-screen w-full overflow-hidden bg-[#F9FBFC]">
           <Sidebar />
           <div className="flex flex-col flex-1 overflow-hidden">
-            <Header toggleSidebar={toggleSidebar} />
+            <div className="flex items-center bg-white h-14 border-b border-[#E3E8EE] px-4 flex-shrink-0">
+              <Header toggleSidebar={toggleSidebar} />
+            </div>
             <Router />
           </div>
         </div>
