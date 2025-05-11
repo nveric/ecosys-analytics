@@ -35,48 +35,48 @@ export default function Sidebar() {
         <div className="px-3 mb-4">
           <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Home</div>
           <Link href="/">
-            <a className={`nav-item ${location === "/" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/" ? "active" : "text-[#606984]"}`}>
               <Home className="h-4 w-4 mr-3" />
               <span>Home</span>
-            </a>
+            </div>
           </Link>
           <Link href="/dashboards">
-            <a className={`nav-item ${location === "/dashboards" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/dashboards" ? "active" : "text-[#606984]"}`}>
               <BarChart3 className="h-4 w-4 mr-3" />
               <span>Dashboards</span>
-            </a>
+            </div>
           </Link>
         </div>
         
         <div className="px-3 mb-4">
           <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Data</div>
           <Link href="/charts">
-            <a className={`nav-item ${location === "/charts" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/charts" ? "active" : "text-[#606984]"}`}>
               <BarChart3 className="h-4 w-4 mr-3" />
               <span>Charts</span>
-            </a>
+            </div>
           </Link>
           <Link href="/datasets">
-            <a className={`nav-item ${location === "/datasets" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/datasets" ? "active" : "text-[#606984]"}`}>
               <Database className="h-4 w-4 mr-3" />
               <span>Datasets</span>
-            </a>
+            </div>
           </Link>
           <Link href="/sql-lab">
-            <a className={`nav-item ${location === "/sql-lab" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/sql-lab" ? "active" : "text-[#606984]"}`}>
               <Scale className="h-4 w-4 mr-3" />
               <span>SQL Lab</span>
-            </a>
+            </div>
           </Link>
         </div>
         
         <div className="px-3 mb-4">
           <div className="text-xs font-medium text-[#949AAB] uppercase tracking-wider mb-2 px-3">Settings</div>
           <Link href="/settings">
-            <a className={`nav-item ${location === "/settings" ? "active" : "text-[#606984]"}`}>
+            <div className={`nav-item ${location === "/settings" ? "active" : "text-[#606984]"}`}>
               <Settings className="h-4 w-4 mr-3" />
               <span>Settings</span>
-            </a>
+            </div>
           </Link>
         </div>
       </div>

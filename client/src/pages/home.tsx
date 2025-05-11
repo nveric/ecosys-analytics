@@ -29,33 +29,33 @@ export default function Home() {
           <CardContent>
             <div className="space-y-4">
               <Link href="/dashboards">
-                <a className="flex items-center p-3 bg-blue-50 text-[#509EE3] rounded-lg hover:bg-blue-100 transition-colors">
+                <div className="flex items-center p-3 bg-blue-50 text-[#509EE3] rounded-lg hover:bg-blue-100 transition-colors">
                   <BarChart3 className="h-5 w-5 mr-3" />
                   <div>
                     <div className="font-medium">View Dashboards</div>
                     <div className="text-sm text-[#606984]">Check your existing dashboards</div>
                   </div>
-                </a>
+                </div>
               </Link>
               
               <Link href="/charts">
-                <a className="flex items-center p-3 bg-green-50 text-[#88BF4D] rounded-lg hover:bg-green-100 transition-colors">
+                <div className="flex items-center p-3 bg-green-50 text-[#88BF4D] rounded-lg hover:bg-green-100 transition-colors">
                   <BarChart3 className="h-5 w-5 mr-3" />
                   <div>
                     <div className="font-medium">Create Chart</div>
                     <div className="text-sm text-[#606984]">Make a new visualization</div>
                   </div>
-                </a>
+                </div>
               </Link>
               
               <Link href="/datasets">
-                <a className="flex items-center p-3 bg-purple-50 text-[#A989C5] rounded-lg hover:bg-purple-100 transition-colors">
+                <div className="flex items-center p-3 bg-purple-50 text-[#A989C5] rounded-lg hover:bg-purple-100 transition-colors">
                   <Database className="h-5 w-5 mr-3" />
                   <div>
                     <div className="font-medium">Connect Data</div>
                     <div className="text-sm text-[#606984]">Set up a new data source</div>
                   </div>
-                </a>
+                </div>
               </Link>
             </div>
           </CardContent>
@@ -68,24 +68,24 @@ export default function Home() {
           <CardContent>
             <div className="space-y-3">
               <Link href="/dashboards/sales">
-                <a className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+                <div className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                   <div className="font-medium text-[#2E3B52]">Sales Dashboard</div>
                   <div className="text-sm text-[#606984] mt-1">Last viewed 2 hours ago</div>
-                </a>
+                </div>
               </Link>
               
               <Link href="/dashboards/marketing">
-                <a className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+                <div className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                   <div className="font-medium text-[#2E3B52]">Marketing Dashboard</div>
                   <div className="text-sm text-[#606984] mt-1">Last viewed yesterday</div>
-                </a>
+                </div>
               </Link>
               
               <Link href="/dashboards/performance">
-                <a className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
+                <div className="block p-3 border border-[#E3E8EE] rounded-lg hover:bg-gray-50">
                   <div className="font-medium text-[#2E3B52]">Performance Metrics</div>
                   <div className="text-sm text-[#606984] mt-1">Last viewed 3 days ago</div>
-                </a>
+                </div>
               </Link>
             </div>
           </CardContent>
