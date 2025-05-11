@@ -18,9 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        metabase: "bg-[#509EE3] text-white hover:bg-[#4090D4]",
-        "metabase-light": "border border-[#E3E8EE] text-[#606984] hover:bg-gray-50",
-        "metabase-outline": "border border-[#509EE3] bg-blue-50 text-[#509EE3] hover:bg-blue-100"
+        metabase: "bg-[#509EE3] text-white hover:bg-[#4090D4] shadow-sm",
+        "metabase-light": "border border-[#E3E8EE] text-[#606984] hover:bg-gray-50 shadow-sm",
+        "metabase-outline": "border border-[#509EE3] bg-blue-50 text-[#509EE3] hover:bg-blue-100 shadow-sm"
       },
       size: {
         default: "h-10 px-4 py-2",

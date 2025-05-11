@@ -42,7 +42,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <div className="flex h-screen w-full overflow-hidden bg-[#F9FBFC]">
+        <div className="flex h-screen w-full overflow-hidden bg-[#F8FAFE]">
           <Sidebar />
           <div className="flex flex-col flex-1 overflow-hidden">
             <div className="flex items-center bg-white h-14 border-b border-[#E3E8EE] px-4 flex-shrink-0">

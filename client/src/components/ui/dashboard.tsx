@@ -20,8 +20,8 @@ export default function Dashboard({ title, lastUpdated }: DashboardProps) {
       {/* Dashboard Header */}
       <div className="metabase-dashboard-header">
         <div>
-          <h1 className="text-2xl font-semibold text-[#2E3B52]">{title}</h1>
-          <p className="text-sm text-[#606984] mt-1">Last updated {lastUpdated}</p>
+          <h1 className="text-xl font-bold text-[#2E3B52]">{title}</h1>
+          <p className="text-xs text-[#949AAB] mt-1">Last updated {lastUpdated}</p>
         </div>
         
         <div className="flex space-x-3">
