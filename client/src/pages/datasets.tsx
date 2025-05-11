@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus, Search, ChevronDown, Database, Filter, MoreVertical } from "lucide-react";
+import { Plus, Search, ChevronDown, Database, Filter, MoreVertical, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,72 +31,162 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { formatDate } from "@/lib/utils";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogFooter,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 
-// Mock data for datasets
-const mockDatasets = [
-  {
-    id: "ds1",
-    name: "Customer Data",
-    source: "PostgreSQL",
-    schema: "public",
-    lastRefreshed: new Date("2023-05-10T08:30:00"),
-    owner: "John Doe",
-    rows: 24589,
-    type: "Table",
-  },
-  {
-    id: "ds2",
-    name: "Products",
-    source: "MySQL",
-    schema: "shop",
-    lastRefreshed: new Date("2023-05-09T14:20:00"),
-    owner: "Jane Smith",
-    rows: 1254,
-    type: "Table",
-  },
-  {
-    id: "ds3",
-    name: "Sales Transactions",
-    source: "PostgreSQL",
-    schema: "sales",
-    lastRefreshed: new Date("2023-05-10T10:15:00"),
-    owner: "John Doe",
-    rows: 1458962,
-    type: "Table",
-  },
-  {
-    id: "ds4",
-    name: "Marketing Campaign",
-    source: "BigQuery",
-    schema: "marketing",
-    lastRefreshed: new Date("2023-05-08T16:45:00"),
-    owner: "Alice Johnson",
-    rows: 546,
-    type: "View",
-  },
-  {
-    id: "ds5",
-    name: "Website Analytics",
-    source: "Snowflake",
-    schema: "web_analytics",
-    lastRefreshed: new Date("2023-05-10T09:30:00"),
-    owner: "Bob Miller",
-    rows: 85462,
-    type: "Table",
-  },
-];
+// Types based on our database schema
+interface Dataset {
+  id: number;
+  name: string;
+  description: string | null;
+  sourceType: 'database' | 'csv' | 'api';
+  sourceConfig: any;
+  createdBy: number | null;
+  createdAt: string;
+  updatedAt: string;
+  rowCount: number | null;
+  isFavorite: boolean;
+}
+
+// Sample converter for sourceConfig to display values
+const getSourceDetails = (dataset: Dataset) => {
+  const config = dataset.sourceConfig || {};
+  return {
+    source: dataset.sourceType || 'Unknown',
+    schema: config.schema || 'default',
+    type: config.type || 'Table'
+  };
+};
 
 export default function DatasetsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [datasetsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [newDatasetName, setNewDatasetName] = useState("");
+  const [newDatasetDescription, setNewDatasetDescription] = useState("");
+  const [newDatasetSource, setNewDatasetSource] = useState<'database' | 'csv' | 'api'>('database');
+  
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  
+  // Fetch datasets from API
+  const { 
+    data: datasets = [], 
+    isLoading,
+    isError 
+  } = useQuery({
+    queryKey: ['/api/datasets'],
+    retry: 1
+  });
+  
+  // Create dataset mutation
+  const createDatasetMutation = useMutation({
+    mutationFn: async (newDataset: { 
+      name: string; 
+      description: string;
+      sourceType: 'database' | 'csv' | 'api';
+      sourceConfig: any;
+    }) => {
+      return await apiRequest('/api/datasets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newDataset),
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/datasets'] });
+      setIsCreateDialogOpen(false);
+      setNewDatasetName("");
+      setNewDatasetDescription("");
+      toast({
+        title: "Dataset created",
+        description: "Your dataset has been created successfully.",
+      });
+    },
+    onError: (error) => {
+      console.error('Failed to create dataset:', error);
+      toast({
+        title: "Failed to create dataset",
+        description: "There was an error creating your dataset. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+  
+  // Toggle favorite mutation
+  const toggleFavoriteMutation = useMutation({
+    mutationFn: async (datasetId: number) => {
+      return await apiRequest(`/api/datasets/${datasetId}/favorite`, {
+        method: 'POST',
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/datasets'] });
+    }
+  });
+  
+  // Delete dataset mutation
+  const deleteDatasetMutation = useMutation({
+    mutationFn: async (datasetId: number) => {
+      return await apiRequest(`/api/datasets/${datasetId}`, {
+        method: 'DELETE',
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/datasets'] });
+      toast({
+        title: "Dataset removed",
+        description: "The dataset has been removed successfully.",
+      });
+    },
+    onError: (error) => {
+      console.error('Failed to delete dataset:', error);
+      toast({
+        title: "Failed to remove dataset",
+        description: "There was an error removing this dataset. Please try again.",
+        variant: "destructive",
+      });
+    }
+  });
+  
+  // Handle create dataset
+  const handleCreateDataset = () => {
+    if (!newDatasetName.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Dataset name is required.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    createDatasetMutation.mutate({
+      name: newDatasetName,
+      description: newDatasetDescription,
+      sourceType: newDatasetSource,
+      sourceConfig: {
+        schema: 'public',
+        type: 'Table'
+      }
+    });
+  };
+  
   // Filter datasets based on search query
-  const filteredDatasets = mockDatasets.filter(
-    (dataset) =>
-      dataset.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      dataset.source.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      dataset.owner.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredDatasets = datasets.filter((dataset: Dataset) =>
+    dataset.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    dataset.sourceType.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Calculate pagination
@@ -108,7 +198,8 @@ export default function DatasetsPage() {
   );
 
   // Format row count with commas
-  const formatRows = (rows: number) => {
+  const formatRows = (rows: number | null) => {
+    if (rows === null) return "0";
     return rows.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
@@ -124,10 +215,76 @@ export default function DatasetsPage() {
         </div>
 
         <div className="flex space-x-3">
-          <Button variant="metabase" size="sm" className="flex items-center">
-            <Plus className="h-4 w-4 mr-1.5" />
-            New Dataset
-          </Button>
+          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="metabase" size="sm" className="flex items-center">
+                <Plus className="h-4 w-4 mr-1.5" />
+                New Dataset
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Create New Dataset</DialogTitle>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="name" className="text-right text-sm">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    className="col-span-3 h-9 rounded-md border border-[#E3E8EE] px-3 py-1"
+                    value={newDatasetName}
+                    onChange={(e) => setNewDatasetName(e.target.value)}
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="description" className="text-right text-sm">
+                    Description
+                  </label>
+                  <textarea
+                    id="description"
+                    className="col-span-3 rounded-md border border-[#E3E8EE] px-3 py-1"
+                    value={newDatasetDescription}
+                    onChange={(e) => setNewDatasetDescription(e.target.value)}
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <label htmlFor="source" className="text-right text-sm">
+                    Source Type
+                  </label>
+                  <select
+                    id="source"
+                    className="col-span-3 h-9 rounded-md border border-[#E3E8EE] px-3 py-1"
+                    value={newDatasetSource}
+                    onChange={(e) => setNewDatasetSource(e.target.value as 'database' | 'csv' | 'api')}
+                  >
+                    <option value="database">Database</option>
+                    <option value="csv">CSV</option>
+                    <option value="api">API</option>
+                  </select>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setIsCreateDialogOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  variant="metabase" 
+                  onClick={handleCreateDataset}
+                  disabled={createDatasetMutation.isPending}
+                >
+                  {createDatasetMutation.isPending && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Create
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
