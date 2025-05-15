@@ -9,7 +9,7 @@ export default function Home() {
     <div className="metabase-content">
       <div className="metabase-dashboard-header">
         <div>
-          <h1 className="text-2xl font-semibold text-[#2E3B52]">Welcome to Metabase</h1>
+          <h1 className="text-2xl font-semibold text-[#2E3B52]">Welcome to Ecosys Analytics</h1>
           <p className="text-sm text-[#606984] mt-1">Your data visualization platform</p>
         </div>
         

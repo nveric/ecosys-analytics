@@ -30,7 +30,7 @@ export default function Settings() {
         <div>
           <h1 className="text-2xl font-semibold text-[#2E3B52]">Settings</h1>
           <p className="text-sm text-[#606984] mt-1">
-            Configure your Metabase instance
+            Configure your Ecosys Analytics instance
           </p>
         </div>
       </div>
